@@ -21,5 +21,6 @@ This plugin is available under the GPL license, which means that it's free. If y
 
 1. User Inbox
 2. View a message sent by another user
-3. Send a private or a public message
-4. Send an email to another user
+3. Send a private message
+4. Send a public message
+5. Send an email to another user
