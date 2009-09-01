@@ -1,6 +1,6 @@
 === User Messages ===
 Contributors: vprat
-Donate link: http://user-messages.vincentprat.info
+Donate link: http://dev.vincentprat.info
 Tags: messenging, private messages, user, email, mail, inbox, communication, admin
 Requires at least: 2.8
 Tested up to: 2.8.4
