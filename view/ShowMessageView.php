@@ -101,7 +101,7 @@ class UM_ShowMessageView {
 				<a id="um-forward-button" class="button" href="admin.php?page=um-write-message-view&type=<?php echo UM_PRIVATE_MESSAGE_TYPE?>&action=forward&message_id=<?php echo $msg->message_id; ?>">
 					<img class="um-button-icon" src="<?php echo UM_THEMEURL; ?>/msg-forward-icon.png" title="<?php _e("Forward Message", "um")?>" alt="<?php _e("Forward", "um")?>" /></a>
 <?php } ?>
-				<a id="um-delete-button" class="button" href="admin.php?page=um-inbox-view&action=delete&doaction=doaction&message_ids[]=<?php echo $msg->message_id; ?>&_wpnonce=<?php echo wp_create_nonce("um_inbox_action"); ?>">
+				<a id="um-delete-button" class="button" href="admin.php?page=user-messages&action=delete&doaction=doaction&message_ids[]=<?php echo $msg->message_id; ?>&_wpnonce=<?php echo wp_create_nonce("um_inbox_action"); ?>">
 					<img class="um-button-icon" src="<?php echo UM_THEMEURL; ?>/msg-delete-icon.png" title="<?php _e("Delete Message", "um")?>" alt="<?php _e("Delete", "um")?>" /></a> 
 			</td>
 		</tr>	
