@@ -5,7 +5,7 @@ Plugin Name: User Messages
 Plugin URI: http://user-messages.vincentprat.info
 Description: Allow you users to communicate with each other in a flexible way. They can send private messages, emails, public messages, ... You can configure who is allowed to do what with the role manager plugin.
 Author: Vincent Prat
-Version: 1.0.2
+Version: 1.1.0
 Author URI: http://www.vincentprat.info
 
 Copyright (c) Vincent Prat 2009
@@ -23,7 +23,7 @@ if (!class_exists('UM_UserMessagesPlugin')) {
     class UM_UserMessagesPlugin {
         
         /** The version of the plugin */
-        public $version = "1.0.2";
+        public $version = "1.1.0";
         
         /** The version of the db structure */
         public $db_version = "0";
@@ -358,9 +358,9 @@ if (!class_exists('UM_UserMessagesPlugin')) {
             $this->options['notification_batch_size'] = 20;
             $this->options['notification_task_interval'] = 20;
             $this->options['new_message_notification_subject'] = __("New message received on %BLOG_NAME%", "um");
-            $this->options['new_message_notification_body'] = __("Hi %RECIPIENT_NAME%,\n\nYou have received a new message from %SENDER_NAME% on %BLOG_NAME%. Please log on the website (%USER_MESSAGES_URL%) to view it.\n\n", "um") . __("This is an automatic email, please do not reply to it.", "um");
+            $this->options['new_message_notification_body'] = __("Hi %RECIPIENT_NAME%,\n\nYou have received a new message from %MESSAGE_AUTHOR% on %BLOG_NAME%. You currently have %UNREAD_MESSAGE_COUNT% unread messages. Please log on the website (%USER_MESSAGES_URL%) to view it.\n\n", "um") . __("This is an automatic email, please do not reply to it.", "um");
             $this->options['over_quota_notification_subject'] = __("Problem with your message box on %BLOG_NAME%", "um");
-            $this->options['over_quota_notification_body'] = __("Hi %RECIPIENT_NAME%,\n\nYour message box on %BLOG_NAME% has exceed the maximum number of messages it can hold. Please log on the website (%USER_MESSAGES_URL%) to delete some of those messages.\n\n", "um") . __("This is an automatic email, please do not reply to it.", "um");
+            $this->options['over_quota_notification_body'] = __("Hi %RECIPIENT_NAME%,\n\nYour message box on %BLOG_NAME% has exceed the maximum number of messages it can hold: you have %TOTAL_MESSAGE_COUNT% messages for a limit of %USER_QUOTA%. Please log on the website (%USER_MESSAGES_URL%) to delete some of those messages.\n\n", "um") . __("This is an automatic email, please do not reply to it.", "um");
             $this->options['inbox_full_notification_subject'] = __("Problem with your message box on %BLOG_NAME%", "um");
             $this->options['inbox_full_notification_body'] = __("Hi %RECIPIENT_NAME%,\n\nSomebody has tried to send you a message on %BLOG_NAME% but your message box is full. The message has not been delivered. Please log on the website (%USER_MESSAGES_URL%) to delete some of those messages.\n\n", "um") . __("This is an automatic email, please do not reply to it.", "um");
         }

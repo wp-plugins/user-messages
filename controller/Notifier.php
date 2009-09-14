@@ -89,9 +89,15 @@ class UM_Notifier {
 	* Replace the notification variables in the given string
 	*/
 	private function replace_notification_variables($in, $recipient=null, $message=null) {
+		global $user_ID, $um_plugin;
+	
 		$out = preg_replace( '/%BLOG_NAME%/', get_option('blogname'), $in );
 		$out = preg_replace( '/%BLOG_URL%/', get_option('siteurl'), $out );
 		$out = preg_replace( '/%USER_MESSAGES_URL%/', get_option('siteurl') . "/wp-admin/admin.php?page=user-messages", $out );
+		
+		$out = preg_replace( '/%TOTAL_MESSAGE_COUNT%/', UM_MessageDAO::count_user_messages($user_ID), $out );
+		$out = preg_replace( '/%UNREAD_MESSAGE_COUNT%/', UM_MessageDAO::count_unread_user_messages($user_ID), $out );
+		$out = preg_replace( '/%USER_QUOTA%/', $um_plugin->options['user_quota'], $out );
 		
 		if (isset($recipient)) {
 			$out = preg_replace( '/%RECIPIENT_NAME%/', $recipient->display_name, $out );

@@ -41,7 +41,7 @@ class UM_PluginOptionsView {
                 . " <li><strong>" . __('Quota exceeded notification', 'um') . "</strong>: " 
                 . __("You can customize the generic notification email sent when a user exceeds his quota and is thus forbidden to send messages", "um") . "</li>"
                 . "</ul>"
-                . "<p>" . __("Within the notification subject and body, you can use the tags %BLOG_NAME%, %BLOG_URL%, %USER_MESSAGES_URL%, %RECIPIENT_NAME%, %MESSAGE_AUTHOR%, %MESSAGE_SUBJECT% and %MESSAGE_CONTENT%. They will be replaced by the appropriate value.");
+                . "<p>" . __("Within the notification subject and body, you can use the tags %BLOG_NAME%, %BLOG_URL%, %USER_MESSAGES_URL%, %TOTAL_MESSAGE_COUNT%, %UNREAD_MESSAGE_COUNT%, %USER_QUOTA%, %RECIPIENT_NAME%, %MESSAGE_AUTHOR%, %MESSAGE_SUBJECT% and %MESSAGE_CONTENT%. They will be replaced by the appropriate value.");
     }
 	
     /**
