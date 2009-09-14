@@ -4,7 +4,7 @@ Donate link: http://dev.vincentprat.info
 Tags: messenging, private messages, user, email, mail, inbox, communication, admin
 Requires at least: 2.8
 Tested up to: 2.8.4
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 
 User Messages will allow the users registered on your blog to have a private Inbox on your site. 
 

@@ -5,7 +5,7 @@ Plugin Name: User Messages
 Plugin URI: http://user-messages.vincentprat.info
 Description: Allow you users to communicate with each other in a flexible way. They can send private messages, emails, public messages, ... You can configure who is allowed to do what with the role manager plugin.
 Author: Vincent Prat
-Version: 1.0.1
+Version: 1.0.2
 Author URI: http://www.vincentprat.info
 
 Copyright (c) Vincent Prat 2009
@@ -23,7 +23,7 @@ if (!class_exists('UM_UserMessagesPlugin')) {
     class UM_UserMessagesPlugin {
         
         /** The version of the plugin */
-        public $version = "1.0.1";
+        public $version = "1.0.2";
         
         /** The version of the db structure */
         public $db_version = "0";
@@ -99,6 +99,27 @@ if (!class_exists('UM_UserMessagesPlugin')) {
 				} else {                    
                     // We already have a version of the plugin installed, update
                     //--
+					if ($active_version<'1.0.2') {
+						// Remove old capabilities that had a long name
+						//--
+						$old_caps = array('UM - Can Ignore Public Messages', 'UM - Can Refuse Private Messages', 
+							'UM - Send Private Messages', 'UM - Send Public Messages', 'UM - Send Email Messages', 
+							'UM - Recieve Messages', 'UM - Configure Plugin', 'UM - Use Plugin');
+			
+						$roles = array("subscriber", "contributor", "author", "editor", "administrator");
+						foreach ($roles as $role) {
+							$role = get_role($role);
+							if (!empty($role)) {
+								foreach ($old_caps as $cap) {
+									$role->remove_cap($cap);
+								}									
+							}
+						}
+						
+						// add new capabilities again
+						//--
+						$this->add_default_capabilities();
+					}
                 }
             }          
             
@@ -209,14 +230,14 @@ if (!class_exists('UM_UserMessagesPlugin')) {
             
             // Capabilities used by the plugin
             //--
-            define('UM_IGNORE_PUBLIC_MESSAGES_CAP', 'UM - Can Ignore Public Messages');
-            define('UM_REFUSE_PRIVATE_MESSAGES_CAP', 'UM - Can Refuse Private Messages');
-            define('UM_SEND_PRIVATE_MESSAGES_CAP', 'UM - Send Private Messages');
-            define('UM_SEND_PUBLIC_MESSAGES_CAP', 'UM - Send Public Messages');
-            define('UM_SEND_EMAIL_MESSAGES_CAP', 'UM - Send Email Messages');
-            define('UM_RECEIVE_MESSAGES_CAP', 'UM - Recieve Messages');
-            define('UM_CONFIGURE_PLUGIN_CAP', 'UM - Configure Plugin');
-            define('UM_USE_PLUGIN_CAP', 'UM - Use Plugin');
+            define('UM_IGNORE_PUBLIC_MESSAGES_CAP', 'UM-Ignore Public Msg');
+            define('UM_REFUSE_PRIVATE_MESSAGES_CAP', 'UM-Refuse Private Msg');
+            define('UM_SEND_PRIVATE_MESSAGES_CAP', 'UM-Send Private Msg');
+            define('UM_SEND_PUBLIC_MESSAGES_CAP', 'UM-Send Public Msg');
+            define('UM_SEND_EMAIL_MESSAGES_CAP', 'UM-Send Email Msg');
+            define('UM_RECEIVE_MESSAGES_CAP', 'UM-Recieve Msg');
+            define('UM_CONFIGURE_PLUGIN_CAP', 'UM-Configure Plugin');
+            define('UM_USE_PLUGIN_CAP', 'UM-Use Plugin');
             
             // The possible types of messages
             //--
