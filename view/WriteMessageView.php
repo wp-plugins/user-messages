@@ -120,14 +120,25 @@ class UM_NewMessageView {
 			<td class="um-msg-recipients">
 				<select class="wide" name="recipients[]" size="8" multiple="multiple" style="height: 7em;">
 			<?php 
-				$selected_ids = isset($_POST['recipients']) ? $_POST['recipients'] : isset($_GET['recipients']) ? $_GET['recipients'] : array();
+				if (isset($_POST['recipients'])) {
+					$selected_ids = $_POST['recipients'];
+				} else if (isset($_GET['recipients'])) {
+					$selected_ids = $_GET['recipients'];
+				} else {
+					$selected_ids = array();
+				}
+				
 				if (!is_array($selected_ids)) {
 					$selected_ids = array($selected_ids);
-				}
+				}				
 				
 				// By default, allow to send to all users
 				//--
 				$recipients = get_users_of_blog();
+				
+				// Sort the list by display_name
+				//--
+				usort($recipients, create_function('$a,$b', 'if ($a->display_name== $b->display_name) return 0; return ($a->display_name < $b->display_name) ? -1 : 1;'));
 				
 				// A separate plugin could define a filter on this user list in order to eliminate some of them
 				//--
@@ -137,7 +148,7 @@ class UM_NewMessageView {
 				foreach ($recipients as $recipient) {
 					if ('false'==get_usermeta($recipient->user_id, UM_ACCEPT_PRIVATE_MESSAGES_USER_META)) continue;
 			?>
-					<option value="<?php echo $recipient->user_id; ?>" <?php if (in_array($recipient->user_id, $selected_ids)) echo ' selected="yes"';?>><?php 
+					<option value="<?php echo $recipient->user_id; ?>" <?php if (in_array(''.$recipient->user_id, $selected_ids)) echo ' selected="yes"';?>><?php 
 						echo $recipient->display_name; 
 					?></option>
 			<?php

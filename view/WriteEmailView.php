@@ -64,11 +64,25 @@ class UM_WriteEmailView {
 			<td class="um-msg-recipients">
 				<select class="wide" name="recipient">
 			<?php 
-				$selected_id = isset($_POST['recipient']) ? $_POST['recipient'] : isset($_GET['recipient']) ? $_GET['recipient'] : 0;
+				if (isset($_POST['recipients'])) {
+					$selected_ids = $_POST['recipients'];
+				} else if (isset($_GET['recipients'])) {
+					$selected_ids = $_GET['recipients'];
+				} else {
+					$selected_ids = array();
+				}
+				
+				if (!is_array($selected_ids)) {
+					$selected_ids = array($selected_ids);
+				}				
 				
 				// By default, allow to send to all users
 				//--
 				$recipients = get_users_of_blog();
+				
+				// Sort the list by display_name
+				//--
+				usort($recipients, create_function('$a,$b', 'if ($a->display_name== $b->display_name) return 0; return ($a->display_name < $b->display_name) ? -1 : 1;'));
 				
 				// A separate plugin could define a filter on this user list in order to eliminate some of them
 				//--
@@ -78,7 +92,7 @@ class UM_WriteEmailView {
 				foreach ($recipients as $recipient) {
 					if ('false'==get_usermeta($recipient->user_id, UM_ACCEPT_EMAIL_USER_META)) continue;
 			?>
-					<option value="<?php echo $recipient->user_id; ?>" <?php if ($recipient->user_id==$selected_id) echo ' selected="yes"';?>><?php 
+					<option value="<?php echo $recipient->user_id; ?>" <?php if (in_array(''.$recipient->user_id, $selected_ids)) echo ' selected="yes"';?>><?php 
 						echo $recipient->display_name; 
 					?></option>
 			<?php

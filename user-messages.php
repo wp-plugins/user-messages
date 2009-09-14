@@ -5,15 +5,11 @@ Plugin Name: User Messages
 Plugin URI: http://user-messages.vincentprat.info
 Description: Allow you users to communicate with each other in a flexible way. They can send private messages, emails, public messages, ... You can configure who is allowed to do what with the role manager plugin.
 Author: Vincent Prat
-Version: 1.1.0
+Version: 1.2.0
 Author URI: http://www.vincentprat.info
 
 Copyright (c) Vincent Prat 2009
 */
-
-// Set to true to enable debugging
-//--
-define('UM_DEBUG', true);
 
 if (!class_exists('UM_UserMessagesPlugin')) {
 
@@ -23,7 +19,7 @@ if (!class_exists('UM_UserMessagesPlugin')) {
     class UM_UserMessagesPlugin {
         
         /** The version of the plugin */
-        public $version = "1.1.0";
+        public $version = "1.2.0";
         
         /** The version of the db structure */
         public $db_version = "0";
@@ -75,7 +71,7 @@ if (!class_exists('UM_UserMessagesPlugin')) {
             //--
             $active_version = $this->options['active_version'];
             $active_db_version = $this->options['active_db_version'];
-            
+						
             if ($active_version==$this->version) {
                 // do nothing
             } else {             
@@ -99,12 +95,14 @@ if (!class_exists('UM_UserMessagesPlugin')) {
 				} else {                    
                     // We already have a version of the plugin installed, update
                     //--
-					if ($active_version<'1.0.2') {
+					if ($active_version<'1.2.0') {
 						// Remove old capabilities that had a long name
 						//--
 						$old_caps = array('UM - Can Ignore Public Messages', 'UM - Can Refuse Private Messages', 
 							'UM - Send Private Messages', 'UM - Send Public Messages', 'UM - Send Email Messages', 
-							'UM - Recieve Messages', 'UM - Configure Plugin', 'UM - Use Plugin');
+							'UM - Recieve Messages', 'UM - Configure Plugin', 'UM - Use Plugin', 'UM-Ignore Public Msg',
+							'UM-Refuse Private Msg', 'UM-Send Private Msg', 'UM-Send Public Msg', 'UM-Send Email Msg',
+							'UM-Recieve Msg', 'UM Recieve Msg', 'UM-Configure Plugin', 'UM-Use Plugin');
 			
 						$roles = array("subscriber", "contributor", "author", "editor", "administrator");
 						foreach ($roles as $role) {
@@ -137,9 +135,6 @@ if (!class_exists('UM_UserMessagesPlugin')) {
         * Called on plugin deactivation event
         */
         function on_deactivate() {
-            if (UM_DEBUG) {
-                $this->on_uninstall();
-            }                     
 			wp_clear_scheduled_hook('um_process_notifications');
         }
         
@@ -230,14 +225,14 @@ if (!class_exists('UM_UserMessagesPlugin')) {
             
             // Capabilities used by the plugin
             //--
-            define('UM_IGNORE_PUBLIC_MESSAGES_CAP', 'UM-Ignore Public Msg');
-            define('UM_REFUSE_PRIVATE_MESSAGES_CAP', 'UM-Refuse Private Msg');
-            define('UM_SEND_PRIVATE_MESSAGES_CAP', 'UM-Send Private Msg');
-            define('UM_SEND_PUBLIC_MESSAGES_CAP', 'UM-Send Public Msg');
-            define('UM_SEND_EMAIL_MESSAGES_CAP', 'UM-Send Email Msg');
-            define('UM_RECEIVE_MESSAGES_CAP', 'UM-Recieve Msg');
-            define('UM_CONFIGURE_PLUGIN_CAP', 'UM-Configure Plugin');
-            define('UM_USE_PLUGIN_CAP', 'UM-Use Plugin');
+            define('UM_IGNORE_PUBLIC_MESSAGES_CAP', 'UM Ignore Public Msg');
+            define('UM_REFUSE_PRIVATE_MESSAGES_CAP', 'UM Refuse Private Msg');
+            define('UM_SEND_PRIVATE_MESSAGES_CAP', 'UM Send Private Msg');
+            define('UM_SEND_PUBLIC_MESSAGES_CAP', 'UM Send Public Msg');
+            define('UM_SEND_EMAIL_MESSAGES_CAP', 'UM Send Email Msg');
+            define('UM_RECEIVE_MESSAGES_CAP', 'UM Receive Msg');
+            define('UM_CONFIGURE_PLUGIN_CAP', 'UM Configure Plugin');
+            define('UM_USE_PLUGIN_CAP', 'UM Use Plugin');
             
             // The possible types of messages
             //--

@@ -107,7 +107,7 @@ class UM_PluginOptionsView {
 </script>
 
 <div class="wrap">
-    <h2><?php _e("User Messages plugin configuration", "um"); ?></h2>
+    <h2><?php echo sprintf(__("User Messages %s configuration", "um"), $um_plugin->options['active_version']); ?></h2>
 
     <div id="slider">    
         <ul id="tabs">
