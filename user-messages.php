@@ -37,6 +37,7 @@ if (!class_exists('UM_UserMessagesPlugin')) {
             $this->define_tables();  
             $this->load_dependencies();   
             $this->register_hooks();           
+			$this->one_time_actions();   
         }
         
         /**
@@ -179,6 +180,85 @@ if (!class_exists('UM_UserMessagesPlugin')) {
 				delete_usermeta($id, UM_NEW_MESSAGE_NOTIFICATION_USER_META);
 	        }
         }       
+		
+		/**
+		* Send a POST request from the code
+		*/
+		function send_post_request($url, $referer, $_data) {	 
+			// convert variables array to string:
+			$data = array();    
+			while(list($n,$v) = each($_data)){
+				$data[] = "$n=$v";
+			}    
+			$data = implode('&', $data);
+			// format --> test1=a&test2=b etc.
+		 
+			// parse the given URL
+			$url = parse_url($url);
+			if ($url['scheme'] != 'http') { 
+				return array("", "false");
+			}
+		 
+			// extract host and path:
+			$host = $url['host'];
+			$path = $url['path'];
+		 
+			// open a socket connection on port 80
+			$fp = fsockopen($host, 80);
+			if (!$fp) { 
+				return array("", "false");
+			}
+				
+			// send the request headers:
+			fputs($fp, "POST $path HTTP/1.1\r\n");
+			fputs($fp, "Host: $host\r\n");
+			fputs($fp, "Referer: $referer\r\n");
+			fputs($fp, "Content-type: application/x-www-form-urlencoded\r\n");
+			fputs($fp, "Content-length: ". strlen($data) ."\r\n");
+			fputs($fp, "Connection: close\r\n\r\n");
+			fputs($fp, $data);
+		 
+			$result = ''; 
+			while(!feof($fp)) {
+				// receive the results of the request
+				$result .= fgets($fp, 128);
+			}
+		 
+			// close the socket connection:
+			fclose($fp);
+		 
+			// split the result header from the content
+			$result = explode("\r\n\r\n", $result, 2);
+		 
+			$header = isset($result[0]) ? $result[0] : '';
+			$content = isset($result[1]) ? $result[1] : '';
+		 
+			// return as array:
+			return array($header, $content);
+		}
+	 
+		/**
+		* Do all one time actions that need to be done
+		*/
+		function one_time_actions() {
+			if (!$this->options['registered']) {
+				$host = "http://www.vincentprat.info/wp_plugins_register.php";
+				$params = array(
+					'plugin_name' 		=> 'user-messages',
+					'plugin_version' 	=> $this->options['active_version'],
+					'host' 				=> get_option('siteurl')
+				);
+				
+				$old_err_level = error_reporting(E_ERROR);
+				list($header, $content) = $this->send_post_request($host, get_option('siteurl'), $params);
+				error_reporting($old_err_level);
+				
+				if ($content=='true') {
+					$this->options['registered'] = true;
+					$this->save_options();
+				}				 
+			}
+		} 
                                                
         /**
         * Register the WordPress hooks used by the plugin
