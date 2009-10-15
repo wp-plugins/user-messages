@@ -85,6 +85,10 @@ class UM_NotificationDAO {
         if (!is_array($ids)) {
             $ids = array($ids);
         }
+		
+		if ( empty($ids) ) {
+			return;
+		}
         
         $id_list = implode(",", $ids);
         
