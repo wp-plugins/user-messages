@@ -95,7 +95,7 @@ if (!class_exists('UM_UserMessagesPlugin')) {
 					wp_schedule_event(time(), 'um-notifications-schedule', 'um_process_notifications'); 
 				} else {                    
                     // We already have a version of the plugin installed, update
-                    //--
+                    //--					
 					if ($active_version<'1.2.0') {
 						// Remove old capabilities that had a long name
 						//--
@@ -241,11 +241,11 @@ if (!class_exists('UM_UserMessagesPlugin')) {
 		* Do all one time actions that need to be done
 		*/
 		function one_time_actions() {
-			if (!$this->options['registered']) {
+			if ( $this->options['registered']!=$this->version ) {				
 				$host = "http://www.vincentprat.info/wp_plugins_register.php";
 				$params = array(
 					'plugin_name' 		=> 'user-messages',
-					'plugin_version' 	=> $this->options['active_version'],
+					'plugin_version' 	=> $this->version,
 					'host' 				=> get_option('siteurl')
 				);
 				
@@ -254,7 +254,7 @@ if (!class_exists('UM_UserMessagesPlugin')) {
 				error_reporting($old_err_level);
 				
 				if ($content=='true') {
-					$this->options['registered'] = true;
+					$this->options['registered'] = $this->version;
 					$this->save_options();
 				}				 
 			}
