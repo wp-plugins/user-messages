@@ -4,7 +4,7 @@ Donate link: http://dev.vincentprat.info
 Tags: messenging, private messages, user, email, mail, inbox, communication, admin
 Requires at least: 2.8
 Tested up to: 2.8.4
-Stable tag: 2.0.0
+Stable tag: 2.1.0
 
 User Messages will allow the users registered on your blog to have a private Inbox on your site. 
 
@@ -22,23 +22,24 @@ Version 1.2.x will remain available for download for free on the WordPress plugi
 
 *CHANGES*
 
+Version 2.1.0: sorting of users made case-insensitive, news feed of the plugin included in its settings page, fixed small bug with permalinks when page url did not end with a "/", fixed bug with users appearing to reject private messages even if caps and preferences were not configured for this.
 Version 2.0.0: the user interface is now fully integrated to your blog, keep a copy of sent messages, permalinks, quotas are more coherent, a few bug fixes.
 
 
 == Screenshots ==
 
-1. User Messages (version 2.0.0)
-2. User Messages (version 2.0.0)
-3. User Messages (version 2.0.0)
-4. User Messages (version 2.0.0)
-5. User Messages (version 2.0.0)
-6. User Messages (version 2.0.0)
-7. User Messages (version 2.0.0)
-8. User Messages (version 2.0.0)
-9. User Messages (version 2.0.0)
-10. User Messages (version 2.0.0)
-11. User Messages (version 2.0.0)
-12. User Messages (version 2.0.0)
-13. User Messages (version 2.0.0)
-14. User Messages (version 2.0.0)
-15. User Messages (version 2.0.0)
+1. User Messages 2.x
+2. User Messages 2.x
+3. User Messages 2.x
+4. User Messages 2.x
+5. User Messages 2.x
+6. User Messages 2.x
+7. User Messages 2.x
+8. User Messages 2.x
+9. User Messages 2.x
+10. User Messages 2.x
+11. User Messages 2.x
+12. User Messages 2.x
+13. User Messages 2.x
+14. User Messages 2.x
+15. User Messages 2.x
