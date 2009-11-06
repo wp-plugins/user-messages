@@ -23,8 +23,11 @@ Version 1.2.x will remain available for download for free on the WordPress plugi
 *CHANGES*
 
 Version 2.2.0: you can now select how a user name is displayed, improved the user interface (click on user names), fixed some bugs concerning the New Message Notification (variables not being replaced correctly) and the sending of sample notifications.
+
 Version 2.1.1: fixed permission bug for a user not allowed to sent private messages (erroneous message that was given: you cannot send public messages), verified compatibility with WP 2.8.5.
+
 Version 2.1.0: sorting of users made case-insensitive, news feed of the plugin included in its settings page, fixed small bug with permalinks when page url did not end with a "/", fixed bug with users appearing to reject private messages even if caps and preferences were not configured for this.
+
 Version 2.0.0: the user interface is now fully integrated to your blog, keep a copy of sent messages, permalinks, quotas are more coherent, a few bug fixes.
 
 
