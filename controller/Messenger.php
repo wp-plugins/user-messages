@@ -64,13 +64,13 @@ class UM_Messenger {
 		
 		// Check the sender is allowed to send public messages
 		//--
-		if ($this->view_type==UM_PUBLIC_MESSAGE_TYPE && !current_user_can(UM_SEND_PUBLIC_MESSAGES_CAP)) {
+		if ($type==UM_PUBLIC_MESSAGE_TYPE && !current_user_can(UM_SEND_PUBLIC_MESSAGES_CAP)) {
 			$result['general_errors'][] = __("You are not allowed to send public messages", "um");
 			return $result;
-		} else if ($this->view_type==UM_PRIVATE_MESSAGE_TYPE && !current_user_can(UM_SEND_PRIVATE_MESSAGES_CAP)) {
+		} else if ($type==UM_PRIVATE_MESSAGE_TYPE && !current_user_can(UM_SEND_PRIVATE_MESSAGES_CAP)) {
 			$result['general_errors'][] = __("You are not allowed to send private messages", "um");
 			return $result;
-		} else if ($this->view_type!=UM_PRIVATE_MESSAGE_TYPE && $this->view_type!=UM_PUBLIC_MESSAGE_TYPE) {
+		} else if ($type!=UM_PRIVATE_MESSAGE_TYPE && $type!=UM_PUBLIC_MESSAGE_TYPE) {
 			$result['general_errors'][] = __("Unknown message type", "um");
 			return $result;
 		}

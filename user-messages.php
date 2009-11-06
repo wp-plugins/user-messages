@@ -3,9 +3,9 @@
 /*
 Plugin Name: User Messages
 Plugin URI: http://user-messages.vincentprat.info
-Description: Allow you users to communicate with each other in a flexible way. They can send private messages, emails, public messages, ... You can configure who is allowed to do what with the role manager plugin.
+Description: Allow you users to communicate with each other in a flexible way. They can send private messages, emails, public messages, ... You can configure who is allowed to do what with the role manager plugin. <span style="display:block;border:1px solid red;color:red;font-weight:bold;">You are having the latest free version. However, since it has gone into commercial licensing, User Messages has plenty of bug fixes and lots of new cool features. Please visit <a href="http://user-messages.vincentprat.info">the plugin page</a> to know more about it!</span>
 Author: Vincent Prat
-Version: 1.2.2
+Version: 1.2.3
 Author URI: http://www.vincentprat.info
 
 Copyright (c) Vincent Prat 2009
@@ -19,7 +19,7 @@ if (!class_exists('UM_UserMessagesPlugin')) {
     class UM_UserMessagesPlugin {
         
         /** The version of the plugin */
-        public $version = "1.2.2";
+        public $version = "1.2.3";
         
         /** The version of the db structure */
         public $db_version = "0";

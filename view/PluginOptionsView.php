@@ -49,7 +49,7 @@ class UM_PluginOptionsView {
     */
     function show_view() {
         global $um_plugin, $user_ID, $um_notifier;  
-			
+        
 		echo '<div id="message" class="updated fade">';
         
         if (isset($_POST["submit"]) || isset($_POST["submit_test_notifications"]) || isset($_POST["submit_process_notifications"])) {
@@ -108,6 +108,8 @@ class UM_PluginOptionsView {
 
 <div class="wrap">
     <h2><?php echo sprintf(__("User Messages %s configuration", "um"), $um_plugin->options['active_version']); ?></h2>
+        
+    <?php echo '<span style="display:block;border:1px solid red;color:red;font-weight:bold;margin:20px;padding:10px;">You are having the latest free version. However, since it has gone into commercial licensing, User Messages has plenty of bug fixes and lots of new cool features. Please visit <a href="http://user-messages.vincentprat.info">the plugin page</a> to know more about it!</span>'; ?>
 
     <div id="slider">    
         <ul id="tabs">
