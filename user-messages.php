@@ -7,7 +7,7 @@ Description: Allow you users to communicate with each other in a flexible way. T
 Author: Vincent Prat
 Version: 1.2.4
 Author URI: http://www.vincentprat.info
-
+ 
 Copyright (c) Vincent Prat 2009
 */
 
