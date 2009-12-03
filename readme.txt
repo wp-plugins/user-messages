@@ -3,8 +3,8 @@ Contributors: vprat
 Donate link: http://dev.vincentprat.info
 Tags: messenging, private messages, user, email, mail, inbox, communication, admin
 Requires at least: 2.8
-Tested up to: 2.9.0 beta 1
-Stable tag: 2.2.1
+Tested up to: 2.8.6
+Stable tag: 2.3.0
 
 User Messages will allow the users registered on your blog to have a private Inbox on your site. 
 
@@ -21,6 +21,10 @@ Since version 2.0.0, the plugin has become a commercial plugin. It can be ordere
 Version 1.2.x will remain available for download for free on the WordPress plugin repository. No further development will be made on this version. 
 
 *CHANGES*
+
+Version 2.3.0: added template functions to include links in the theme (see administrator manual), fixed 404 error when the user messages page is a child of another page, send messages to roles (by default capability added to administrators and editors), when a message has been sent successfully the form is disabled so that the message cannot be sent twice by mistake (same for emails)
+
+Version 2.2.2: fixed small bug for the show message URL generation (affecting only people not using permalinks)
 
 Version 2.2.1: fixed several bugs for users not using permalinks (generation of URLs), hopefully fixes the 404 problem occuring after editing pages for users using permalinks.
 
